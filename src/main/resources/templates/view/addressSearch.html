@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>住所検索画面</title>
+<style>
+.text_left{text-align: left}
+.text_center{text-align: cneter}
+.text_right {text-align: right}
+</style>
+</head>
+<body>
+検索画面
+<br>
+<br>
+	<form th:action="@{/addressSearchController}" th:object="${searchConditionDto}" method="post">
+
+		<table>
+			<tr>
+				<td>姓</td>
+				<td><input type="text" th:field="*{sei}" size="16" maxlength="10"/></td>
+			</tr>
+			<tr>
+				<td>名</td>
+				<td><input type="text" th:field="*{mei}" size="16" maxlength="10"/></td>
+			</tr>
+			<tr>
+				<td>電話番号</td>
+				<td><input type="text" th:field="*{phoneNumber}" size="20" maxlength="13"/></td>
+				<td th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">phoneNumber erroer</td>
+			</tr>
+		</table>
+
+		<input type="submit" name="search" value="検索"/>
+		<input type="submit" name="newEntry" value="新規登録"/>
+	</form>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>個人登録画面</title>
+
+</head>
+<body>
+		<div th:if="${listFlg}">
+			<a href="/addressSearchInitView">検索画面</a>&nbsp;&gt;&nbsp;<a href="/addressListController?list">一覧画面</a>&nbsp;&gt;&nbsp;登録画面
+		</div>
+
+		<div th:if="${searchFlg}">
+			<a href="/addressSearchInitView">検索画面</a>&nbsp;&gt;&nbsp;登録画面
+		</div>
+
+		<br>
+		<br>
+	<form th:action="@{/userRegistController}" th:object="${userRegistForm}" method="post">
+		<table border="0" >
+			<colgroup>
+				<col width="80" />
+				<col width="200" />
+				<col width="80" />
+				<col width="200" />
+			</colgroup>
+			<tr>
+				<td>姓</td>
+				<td><input type="text" th:field="*{sei}"  size="15" maxlength="10"/></td>
+				<td>名</td>
+				<td><input type="text" th:field="*{mei}"  size="15" maxlength="10"/></td>
+			</tr>
+			<tr>
+				<td>フリガナ</td>
+				<td><input type="text" th:field="*{seiKana}"  size="15" maxlength="10"/></td>
+				<td>フリガナ</td>
+				<td><input type="text" th:field="*{meiKana}"  size="15" maxlength="10"/></td>
+			</tr>
+			<tr><td>&nbsp;</td></tr>
+			<tr>
+				<td>〒</td>
+				<td colspan="3"><input type="text" th:field="*{postalCode}" size="9" maxlength="7"/></td>
+			</tr>
+			<tr>
+				<td>住所１</td>
+				<td colspan="3"><input type="text" th:field="*{address1}" size="65" maxlength="50"/></td>
+			</tr>
+			<tr>
+				<td>住所２</td>
+				<td colspan="3"><input type="text" th:field="*{address2}" size="65" maxlength="50"/></td>
+			</tr>
+			<tr>
+				<td>電話番号</td>
+				<td colspan="3"><input type="text" th:field="*{phoneNumber}" size="15" maxlength="11"/></td>
+			</tr>
+			<tr>
+				<td>e-Mail</td>
+				<td colspan="3"><input type="text" th:field="*{mailAddress}" size="65" maxlength="50"/></td>
+			</tr>
+		</table>
+		<br>
+
+		<table border="0">
+			<colgroup>
+				<col width="50%" />
+				<col width="50%" />
+			</colgroup>
+			<tr>
+				<td align="left">
+					<input type="submit" name="returnView" value="キャンセル" style="width:100px">
+				</td>
+				<td align="right">
+					<input type="submit" name="regist" value="確　定" style="width:100px">
+				</td>
+			</tr>
+		</table>
+		<div th:if="${#fields.hasErrors('sei')}" th:errors="*{sei}">sei error</div>
+		<div th:if="${#fields.hasErrors('mei')}" th:errors="*{mei}">mei error</div><br>
+		<div th:if="${#fields.hasErrors('seiKana')}" th:errors="*{seiKana}">seiKana error</div><br>
+		<div th:if="${#fields.hasErrors('meiKana')}" th:errors="*{meiKana}">meiKana error</div><br>
+		<div th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}">postalCode error</div><br>
+		<div th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">phoneNumber error</div><br>
+
+		<input type = "hidden" th:field="*{registNo}">
+	</form>
+</body>
+</html>

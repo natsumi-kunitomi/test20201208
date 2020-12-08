@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>住所一覧画面</title>
+<style>
+.text_left{text-align: left}
+.text_center{text-align: center}
+.text_right{text-align: right}
+
+</style>
+</head>
+<body>
+
+	<form th:action="@{/addressListController?delete}"  method="post" id="deleteSubmit">
+		<input type="hidden" id="registNo" name="registNo" />
+	</form>
+
+	<form th:action="@{/addressListController?updateView}" method="post" id="updateViewSubmit">
+		<input type="hidden" id="registNo2" name="registNo" />
+	</form>
+
+	<form th:action="@{/addressListController}" th:object="${addressListForm}"  method="post">
+		<a href="/addressSearchInitView">検索画面</a>&nbsp;&gt;&nbsp;一覧画面
+		<br>
+		<br>
+
+		<table>
+			<tr>
+		    	<td width="580">&nbsp;</td>
+		    	<td width="120" align="center"><input type="submit" name="newEntry" value="新規登録"/></td>
+			</tr>
+		</table>
+	</form>
+
+		<table border="1">
+			<colgroup>
+				<col width="30"/>
+				<col width="100"/>
+				<col width="100"/>
+				<col width="250"/>
+				<col width="100"/>
+				<col width="120"/>
+			</colgroup>
+			<tr>
+				<td class="text_center">No</td>
+				<td>姓</td>
+    			<td>名</td>
+				<td>住所</td>
+				<td>電話番号</td>
+				<td>&nbsp;</td>
+			</tr>
+
+			<tr th:each="value,valueStat : ${user}">
+				<td th:text="${valueStat.index}+1"></td>
+				<td th:text="${value.sei}"></td>
+				<td th:text="${value.mei}"></td>
+				<td><div th:unless="${value.postalCode}==''" th:text="〒+${value.postalCode}"></div>
+					<div th:text="${value.address1}+${value.address2}"></div></td>
+				<td th:text="${value.phoneNumber}"></td>
+
+				<td><input type = "button" name="updateView" value="編 集"/>&nbsp;
+					<input type = "button" name="delete" value="削 除" />
+					<input type = "hidden" name="registNo" th:value="${value.registNo}">
+					<input type = "hidden" name="registNo2" th:value="${value.registNo}">
+				</td>
+			</tr>
+		</table>
+
+</body>
+	<script type="text/javascript">
+
+			const nodeList1 = document.querySelectorAll("input[name='delete']");
+			for(let i = 0; i < nodeList1.length; i++){
+				nodeList1[i].addEventListener("click",(e) =>{
+					const registerValue1 = e.target.parentElement.children[2].value;
+					document.getElementById("registNo").value = registerValue1;
+					document.getElementById("deleteSubmit").submit();
+				})
+			}
+
+			const nodeList2 = document.querySelectorAll("input[name='updateView']");
+			for(let j = 0; j < nodeList2.length; j++){
+				nodeList2[j].addEventListener("click",(e) =>{
+					const registerValue2 = e.target.parentElement.children[2].value;
+					document.getElementById("registNo2").value = registerValue2;
+					document.getElementById("updateViewSubmit").submit();
+				})
+			}
+
+	</script>
+</html>
