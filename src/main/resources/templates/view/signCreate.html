@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>登録画面</title>
+</head>
+<body>
+	<br>
+	<br>
+<!-- 	<form th:action="@{/addressSearchController}" th:object="${SignInDto}" -->
+		<table>
+			<tr>
+				<td>USER:</td>
+				<td><input type="text" size="16" maxlength="10" /></td>
+			</tr>
+			<tr>
+				<td>PASS:</td>
+				<td><input type="text" size="16" maxlength="10" /></td>
+			</tr>
+			<tr>
+				<td>確認用PASS:</td>
+				<td><input type="text" size="16" maxlength="10" /></td>
+			</tr>
+		</table>
+		<input type="submit" name="edit" value="登録" />
+<!-- 	</form> -->
+</body>
+</html>

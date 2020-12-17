@@ -37,6 +37,30 @@ public class AddressBookController {
 	// 登録用フラグ
 	public Boolean insertFlg = false;
 
+	@RequestMapping("/signIn")
+	public ModelAndView signInInitView(SearchConditionDto searchConditionDto, ModelAndView mav) {
+
+		mav.setViewName("/view/signIn");
+
+		return mav;
+	}
+
+	@RequestMapping(value="/signCreate",params="signCreate")
+	public ModelAndView signCreate(SearchConditionDto searchConditionDto, ModelAndView mav) {
+
+		mav.setViewName("/view/signCreate");
+
+		return mav;
+	}
+
+	@RequestMapping(value="/signCreate",params="signIn")
+	public ModelAndView signIn(SearchConditionDto searchConditionDto, ModelAndView mav) {
+
+		mav.setViewName("/view/addressSearch");
+
+		return mav;
+	}
+
 	@RequestMapping("/addressSearchInitView")
 	public ModelAndView addressSearchInitView(SearchConditionDto searchConditionDto, ModelAndView mav) {
 

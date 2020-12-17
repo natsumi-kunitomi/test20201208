@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>サインイン画面</title>
+</head>
+<body>サインイン
+</body>
+<br>
+<br>
+	<form th:action="@{/signCreate}" th:object="${SignInDto}" method="post">
+		<table>
+			<tr>
+				<td>USER:</td>
+<!-- 				<td><input type="text" th:field="*{user}" size="16" maxlength="10"/></td> -->
+			</tr>
+			<tr>
+				<td>PASS:</td>
+<!--				<td><input type="text" th:field="*{password}" size="16" maxlength="10"/></td> -->
+			</tr>
+		</table>
+		<input type="submit" name="signIn" value="サインイン"/>
+		<input type="submit" name="signCreate" value="新規登録"/>
+	</form>
+</html>
